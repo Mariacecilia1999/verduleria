@@ -1,6 +1,7 @@
 const $ = selector => document.querySelector(selector)
-
-
+const obtengoGuardado = (key) => JSON.parse(localStorage.getItem(key))
+const guardoDato = (key, array) => localStorage.setItem(key, JSON.stringify(array))
+const arrayProductosAgregados = []
 const frutasVerduras = [
    {
      "id": 1,
@@ -71,8 +72,10 @@ const mostrarFrutasVerduras = (arreglo) =>{
       $('.verdurasYFrutas').innerHTML += `<div class='contenedorProducto'>
                                           <div class='estilosCarta'>
                                              <h3>${emoji}</h3>
+                                             <img class='productoAgregadoImg' src='./img/carro.png'>
                                           </div>
-                                          <div><button>Agregar</button></div>
+
+                                          <div><button onclick='agregarFruta(${id})'>Agregar</button></div>
                                           </div>
                                           `
    }
@@ -89,8 +92,22 @@ const mostrarYCerrarCarrito = () =>{
   })
 }
 
+const agregarFruta = (id) =>{
+  const agregarProducto = frutasVerduras.filter(fruta =>{
+    if(fruta.id === id){
+      return fruta
+    }
+  })
+  arrayProductosAgregados.push(agregarProducto)
+  guardoDato('carrito', arrayProductosAgregados)
+}
+
 const inicializador = () =>{
    mostrarFrutasVerduras(frutasVerduras)
    mostrarYCerrarCarrito()
+   if(!(obtengoGuardado('carrito'))){
+    guardoDato('carrito', arrayProductosAgregados)
+   }
+   
 }
 window.addEventListener('load', inicializador)

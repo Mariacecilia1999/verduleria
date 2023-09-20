@@ -77,3 +77,8 @@ box-shadow: 10px 10px 5px 0px rgba(224,224,224,1);
 .imgCerrarCarrito img{
    width: 40px;
 }
+
+.productoAgregadoImg{
+   width: 30px;
+   display: none;
+}
