@@ -1,0 +1,38 @@
+body{
+   background-color: blueviolet;
+}
+
+.verdurasYfrutas{
+   display: flex;
+   flex-wrap: wrap;
+   gap: 50px;
+}
+
+.estilosCarta{
+   background: white;
+   border: 5px solid black;
+   border-radius: 12px;
+   font-size: 80px;
+   width: 250px;
+   height: 200px;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   -webkit-box-shadow: 10px 10px 5px 0px rgba(224,224,224,1);
+-moz-box-shadow: 10px 10px 5px 0px rgba(224,224,224,1);
+box-shadow: 10px 10px 5px 0px rgba(224,224,224,1);
+}
+
+.contenedorProducto{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.contenedorProducto button{
+   margin-top: 30px;
+   padding: 10px 35px;
+   font-size: 18px;
+   border-radius: 100px;
+}
