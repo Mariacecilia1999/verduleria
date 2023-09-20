@@ -1,6 +1,21 @@
 const $ = selector => document.querySelector(selector)
 const obtengoGuardado = (key) => JSON.parse(localStorage.getItem(key))
 const guardoDato = (key, array) => localStorage.setItem(key, JSON.stringify(array))
+const idsGenerados = new Set();
+
+function generarIdUnico() {
+  let id;
+  do {
+    // Genera un número aleatorio único entre 1 y 10000
+    id = Math.floor(Math.random() * 10000) + 1;
+  } while (idsGenerados.has(id)); // Verifica si el ID ya existe en el conjunto
+
+  // Agrega el ID al conjunto de IDs generados
+  idsGenerados.add(id);
+
+  return id;
+}
+
 const arrayProductosAgregados = []
 const frutasVerduras = [
    {
@@ -93,8 +108,11 @@ const mostrarYCerrarCarrito = () =>{
 }
 
 const agregarFruta = (id) => {
-  const frutaEncontrada = frutasVerduras.find(fruta => fruta.id === id);
+  const frutaEncontrada = frutasVerduras.find(fruta => fruta.id === id)
   if (frutaEncontrada) {
+    const nuevoId = generarIdUnico()
+    frutaEncontrada.id = nuevoId
+
     const carritoActual = obtengoGuardado('carrito') || []
     carritoActual.push(frutaEncontrada)
     guardoDato('carrito', carritoActual)
@@ -104,14 +122,24 @@ const agregarFruta = (id) => {
 
 
 
+
 const mostrarListaDeProductos = (datos) =>{
   $('#listaProductosAgregados').innerHTML= ''
   for(const {id, emoji, precio} of datos){
     $('#listaProductosAgregados').innerHTML += `<div class='mostrarPrecio'>
                                                 <p>${emoji}</p>
-                                                <span>$ ${precio}</span>
+                                                <div>
+                                                  <span>$ ${precio}</span>
+                                                  <span onclick='eliminarProducto(${id})'>X</span>
+                                                </div>
                                                 </div>`
   }
+}
+
+const eliminarProducto = (id) =>{
+  const eliminar = obtengoGuardado('carrito').filter(fruta => fruta.id !== id)
+  guardoDato('carrito', eliminar)
+  mostrarListaDeProductos(obtengoGuardado('carrito'))
 }
 
 const inicializador = () =>{
