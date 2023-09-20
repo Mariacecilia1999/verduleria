@@ -1,3 +1,7 @@
+*{
+   margin: 0;
+   padding: 0;
+}
 body{
    background-color: blueviolet;
 }
@@ -35,4 +39,24 @@ box-shadow: 10px 10px 5px 0px rgba(224,224,224,1);
    padding: 10px 35px;
    font-size: 18px;
    border-radius: 100px;
+}
+
+.contenedorDeCarrito{
+   display: flex;
+   justify-content: space-between;
+   width: 100%;
+}
+
+.mostrarListaDeCompras{
+   height: 50%;
+   width: 300px;
+   display: flex;
+   flex-direction: column;
+   background-color: white;
+   display: none;
+}
+
+.carrito img{
+   width: 60px;
+   cursor: pointer;
 }
