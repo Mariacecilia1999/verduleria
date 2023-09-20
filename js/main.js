@@ -92,14 +92,26 @@ const mostrarYCerrarCarrito = () =>{
   })
 }
 
-const agregarFruta = (id) =>{
-  const agregarProducto = frutasVerduras.filter(fruta =>{
-    if(fruta.id === id){
-      return fruta
-    }
-  })
-  arrayProductosAgregados.push(agregarProducto)
-  guardoDato('carrito', arrayProductosAgregados)
+const agregarFruta = (id) => {
+  const frutaEncontrada = frutasVerduras.find(fruta => fruta.id === id);
+  if (frutaEncontrada) {
+    const carritoActual = obtengoGuardado('carrito') || []
+    carritoActual.push(frutaEncontrada)
+    guardoDato('carrito', carritoActual)
+  }
+  mostrarListaDeProductos(obtengoGuardado('carrito'))
+}
+
+
+
+const mostrarListaDeProductos = (datos) =>{
+  $('#listaProductosAgregados').innerHTML= ''
+  for(const {id, emoji, precio} of datos){
+    $('#listaProductosAgregados').innerHTML += `<div class='mostrarPrecio'>
+                                                <p>${emoji}</p>
+                                                <span>$ ${precio}</span>
+                                                </div>`
+  }
 }
 
 const inicializador = () =>{
@@ -107,7 +119,8 @@ const inicializador = () =>{
    mostrarYCerrarCarrito()
    if(!(obtengoGuardado('carrito'))){
     guardoDato('carrito', arrayProductosAgregados)
+   }else{
+    mostrarListaDeProductos(obtengoGuardado('carrito'))
    }
-   
 }
 window.addEventListener('load', inicializador)

@@ -82,3 +82,19 @@ box-shadow: 10px 10px 5px 0px rgba(224,224,224,1);
    width: 30px;
    display: none;
 }
+
+.productoAgregadoImgAnimacion{
+   width: 30px;
+   display: block;
+}
+
+.mostrarPrecio{
+   display: flex;
+   justify-content: space-between;
+   border-bottom: 1px solid black;
+   margin: 30px;
+}
+
+.total{
+   font-size: 20px;
+}
