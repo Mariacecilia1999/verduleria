@@ -78,7 +78,19 @@ const mostrarFrutasVerduras = (arreglo) =>{
    }
 }
 
+const mostrarYCerrarCarrito = () =>{
+  $('#Carrito').addEventListener('click', () =>{
+    $('.mostrarListaDeCompras').classList.add('mostrarCarrito')
+  $('#carrito').classList.add('ocultar')
+  })
+  $('#cerrarCarrito').addEventListener('click', () =>{
+    $('.mostrarListaDeCompras').classList.remove('mostrarCarrito')
+    $('#carrito').classList.remove('ocultar')
+  })
+}
+
 const inicializador = () =>{
    mostrarFrutasVerduras(frutasVerduras)
+   mostrarYCerrarCarrito()
 }
 window.addEventListener('load', inicializador)

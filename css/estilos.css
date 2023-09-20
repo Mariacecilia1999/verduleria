@@ -56,7 +56,24 @@ box-shadow: 10px 10px 5px 0px rgba(224,224,224,1);
    display: none;
 }
 
+.ocultar{
+   display: none;
+}
+.mostrarCarrito{
+   display: block;
+}
+
 .carrito img{
    width: 60px;
    cursor: pointer;
+}
+
+.imgCerrarCarrito{
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.imgCerrarCarrito img{
+   width: 40px;
 }
